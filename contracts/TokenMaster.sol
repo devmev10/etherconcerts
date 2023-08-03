@@ -7,7 +7,7 @@ contract TokenMaster is ERC721 {
     address public owner;
     uint256 public totalOccasions;
     uint256 public totalSupply;
-    
+
     struct Occasion{
         uint256 id;
         string name;
@@ -57,8 +57,14 @@ contract TokenMaster is ERC721 {
         );
     }
 
-    function mint() public{
-        _safeMint(msg.sender, )
+    function mint(uint256 _id, uint256 _seat) public payable{
+
+occasions[_id].tickets -= 1; // Update ticket count
+
+        totalSupply++ ;
+
+
+        _safeMint(msg.sender, totalSupply);
     }
 
     function getOccasion(uint256 _id) public view returns (Occasion memory){
