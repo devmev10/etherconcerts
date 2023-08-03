@@ -36,6 +36,7 @@ contract TokenMaster is ERC721 {
         string memory _location
     ) public{
 
+        require(msg.sender == owner);
         totalOccasions++ ;
 
         occasions[totalOccasions] = Occasion(
