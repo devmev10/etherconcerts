@@ -5,8 +5,12 @@ const SYMBOL = "TM";
 
 describe("TokenMaster", () => {
   let tokenMaster;
+  let deployer, buyer;
 
   beforeEach(async () => {
+    // Setup accounts
+    [deployer, buyer] = await ethers.getSigners();
+
     const TokenMaster = await ethers.getContractFactory("TokenMaster");
     tokenMaster = await TokenMaster.deploy(NAME, SYMBOL);
   });
