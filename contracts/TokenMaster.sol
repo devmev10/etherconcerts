@@ -56,6 +56,10 @@ contract TokenMaster is ERC721 {
         );
     }
 
+    function mint() public{
+        
+    }
+
     function getOccasion(uint256 _id) public view returns (Occasion memory){
         return occasions[_id];
     }
