@@ -21,7 +21,18 @@ describe("TokenMaster", () => {
     const TokenMaster = await ethers.getContractFactory("TokenMaster");
     tokenMaster = await TokenMaster.deploy(NAME, SYMBOL);
 
-    await tokenMaster.connect(deployer).list();
+    const transaction = await tokenMaster
+      .connect(deployer)
+      .list(
+        OCCASION_NAME,
+        OCCASION_COST,
+        OCCASION_MAX_TICKETS,
+        OCCASION_DATE,
+        OCCASION_TIME,
+        OCCASION_LOCATION
+      );
+
+    await transaction.wait();
   });
 
   describe("Deployment", () => {
