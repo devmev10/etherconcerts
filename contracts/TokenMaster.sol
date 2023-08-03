@@ -18,6 +18,8 @@ contract TokenMaster is ERC721 {
         string location;
     }
 
+    mapping(uint256 => Occasion) occasions;
+
     constructor(
         string memory _name, 
         string memory _symbol
@@ -33,9 +35,10 @@ contract TokenMaster is ERC721 {
         string memory _time, 
         string memory _location
     ) public{
-totalOccasions = totalOccasions + 1;
 
-        Occasion(
+        totalOccasions++ ;
+
+        occasions[totalOccasions] = Occasion(
             totalOccasions,
             _name,
             _cost,
