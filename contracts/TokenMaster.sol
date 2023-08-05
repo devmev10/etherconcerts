@@ -20,7 +20,9 @@ contract TokenMaster is ERC721 {
     }
 
     mapping(uint256 => Occasion) occasions;
+    mapping(uint256 => mapping(address => bool)) public hasBought;
     mapping(uint256 => mapping(uint256 => address)) public seatTaken;
+    mapping(uint256 => uint256[]) seatsTaken;
 
     modifier onlyOwner() {
         require(msg.sender == owner);
@@ -59,7 +61,11 @@ contract TokenMaster is ERC721 {
     function mint(uint256 _id, uint256 _seat) public payable {
         occasions[_id].tickets -= 1; // Update ticket count
 
-        seatTaken[_id][_seat] = msg.sender;
+        hasBought[_id][msg.sender] = true; // Update buying status
+
+        seatTaken[_id][_seat] = msg.sender; // Assign seat
+
+        seatsTaken[_id].push(_seat); // Update seats currently taken
 
         totalSupply++;
 
