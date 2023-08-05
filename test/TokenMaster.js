@@ -85,5 +85,10 @@ describe("TokenMaster", () => {
       const occasion = await tokenMaster.getOccasion(1);
       expect(occasion.tickets).to.be.equal(OCCASION_MAX_TICKETS - 1);
     });
+
+    it("Updates buying status", async () => {
+      const status = await tokenMaster.hasBought(ID, buyer.address);
+      expect(status).to.be.equal(true);
+    });
   });
 });
