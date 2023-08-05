@@ -59,6 +59,8 @@ contract TokenMaster is ERC721 {
     function mint(uint256 _id, uint256 _seat) public payable {
         occasions[_id].tickets -= 1; // Update ticket count
 
+        seatTaken[_id][_seat] = msg.sender;
+
         totalSupply++;
 
         _safeMint(msg.sender, totalSupply);
