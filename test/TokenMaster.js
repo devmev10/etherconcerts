@@ -77,7 +77,13 @@ describe("TokenMaster", () => {
       const transaction = await tokenMaster
         .connect(buyer)
         .mint(ID, SEAT, { value: AMOUNT });
+
       await transaction.wait();
+    });
+
+    it("Updates ticket count", async () => {
+      const occasion = await tokenMaster.getOccasion(1);
+      expect(occasion.tickets).to.be.equal(OCCASION_MAX_TICKETS - 1);
     });
   });
 });
