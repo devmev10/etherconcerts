@@ -63,6 +63,9 @@ contract TokenMaster is ERC721 {
         require(_id != 0);
         require(_id <= totalOccasions);
 
+        // Require that ETH sent is greater than cost
+        require(msg.value >= occasions[_id].cost);
+
         occasions[_id].tickets -= 1; // Update ticket count
 
         hasBought[_id][msg.sender] = true; // Update buying status
